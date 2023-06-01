@@ -1,5 +1,4 @@
-
-const slidesContainer = document.querySelector('.slides-container');
+const slidesContainer = document.querySelector('.carousel-container');
 const carouselElement = document.querySelector('.carousel');
 const slider = document.querySelector('.carousel-caption')
 const prevBtn = document.createElement('button');
@@ -9,12 +8,8 @@ const nextBtn = document.createElement('button');
 const autoPlay = true;
 const interval = 5000;
 
-
-const carouselWidth = carouselElement.offsetWidth;
-
-
+//configuraciones de los slides
 let currentSlide = 0;
-
 
 const slidesData = [
      { index: 'Junio', text: '16.660' },
@@ -31,8 +26,8 @@ const btnIcons = {
 slidesData.forEach(slide => {
     slidesContainer.innerHTML += `
     <li class="carousel-caption">
-    <p>${slide.index}</p>
-    <h4>${slide.text}</h4>
+    <p class="text-primary">${slide.index}</p>
+    <h4 class="text-primary">${slide.text}</h4>
     </li>
     ` 
 });
@@ -43,13 +38,13 @@ const setBtn = () => {
     iconPrev.src = btnIcons.prevIcon
     iconPrev.width = 20
     prevBtn.appendChild(iconPrev);
-    prevBtn.classList.add('prev');
+    prevBtn.classList.add('btn-prev');
     prevBtn.classList.add('btn')
     
     iconNext.src = btnIcons.nextIcon
     iconNext.width = 20
     nextBtn.appendChild(iconNext)
-    nextBtn.classList.add('next')
+    nextBtn.classList.add('btn-next')
     nextBtn.classList.add('btn')
     carouselElement.appendChild(prevBtn)
     carouselElement.appendChild(nextBtn)
@@ -60,7 +55,6 @@ function updateSlide(index) {
     const translate = `translateX(-${currentSlide * 100}%)`;
     slidesContainer.style.transform = translate;
   }
-  
 
 function prevSlide() {
     updateSlide(currentSlide - 1)
@@ -76,8 +70,6 @@ function automaticSlide() {
 
 prevBtn.addEventListener('click', prevSlide)
 nextBtn.addEventListener('click', nextSlide)
-
-
 
 slidesData.length > 1 && setBtn();
 autoPlay && automaticSlide();
